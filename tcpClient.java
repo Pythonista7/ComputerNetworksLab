@@ -15,7 +15,7 @@ class tcpClient
 	
 		//create output stream to send data to outstream
 		OutputStream ostream=sock.getOutputStream();
-		PrintWriter pw = new PrintWriter(ostream,true);
+		PrintWriter pw = new PrintWriter(ostream,true);//StreamToWriteTo , autoFlush
 		//send filename to the server by writing to outstream using PrintWriter
 		pw.println(fname);
 
