@@ -1,18 +1,34 @@
+#-------------------------------------------------------------------------------
+# repository link : https://github.com/Pythonista7/ComputerNetworksLab
+#-------------------------------------------------------------------------------
+#
+#
+#-------------------------------------------------------------------------------
+#                              AIM
+#-------------------------------------------------------------------------------
+#Implement three nodes point – to – point network with duplex links between them.
+#Set the queue size, vary the bandwidth and find the number of packets dropped.
+#-------------------------------------------------------------------------------
+
 #STEP1
+
+#Initialize Simulator
 set ns [new Simulator]
-set tf [open p2p_code.tr w]
+#Setup a trace file
+set tf [open p2p_code.tr w]  
 $ns trace-all $tf
+#Setup a Networks Animator File
 set nm [open p2p_code.nam w]
 $ns namtrace-all $tf
 
 #STEP2 Building Topology
-#A
+#A : Create 4 nodes
 set n0 [$ns node]
 set n1 [$ns node]
 set n2 [$ns node]
 set n3 [$ns node]
 
-#B : name the nodes
+#B : Label the nodes
 $n0 label "Source1/udp0"
 $n1 label "Source2/udp1"
 $n2 label "IntermidiateNode/Router"
@@ -34,12 +50,17 @@ $ns color 2 "yellow"
 
 #Step3
 #A : Attach udp agents to n0 and n1 and null agent to n3
+
+#UDP agent is used to generate the traffic 
 set udp0 [new Agent/UDP]
 $ns attach-agent $n0 $udp0
 
+#Constant bit rate [CBR] in Ns2 is used along with TCP and UDP to design the 
+#traffic source behavior of packets. 
 set cbr0 [new Application/Traffic/CBR]
 $cbr0 attach-agent $udp0
 
+#A "null" agent just frees the packets received. 
 set null3 [new Agent/Null]
 $ns attach-agent $n3 $null3
 
@@ -54,6 +75,7 @@ $udp0 set class_ 1
 $udp1 set class_ 2
 
 #step4 : connecting agents
+#Connect traffic generating nodes(udp0 and udp1) to destination node(null3)
 $ns connect $udp0 $null3
 $ns connect $udp1 $null3
 
@@ -72,7 +94,20 @@ close $tf
 exit 0
 }
 
+#Start traffic from node 0 at time 0.1 seconds and node 1 at time 0.5 seconds
 $ns at 0.1 "$cbr0 start"
 $ns at 0.5 "$cbr1 start"
 $ns at 10.0 "finish"
 $ns run
+
+#-------------------------------------------------------------------------------
+#      Run this file on cmd as 
+#                                  $ ns p2p_code.tcl
+#                                  $ nam p2p_code.tr #This will start simulation
+#
+#      To check for the number of dropped packers we need to count the number dropped packets.
+#      The packets which are dropped are marked on the trace-file(.tr) with a 'd' on column 1
+#      Run the drop_count.awk file to get the count of number of dropped packets.
+#           To run awk file :
+#                                  $ awk -f drop_count.awk p2p_code.tr
+#-------------------------------------------------------------------------------
