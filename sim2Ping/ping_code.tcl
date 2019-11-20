@@ -141,3 +141,12 @@ $ns at [ expr $now + $interval_ ] "sendPingPacket"
 $ns at 0.01 "sendPingPacket"
 $ns at 5.0 "finish"
 $ns run
+
+#-------------------------------------------------------------------------------
+#      Run this file on cmd as 
+#                                  $ ns ping_code.tcl
+#  NOTE:
+#       This program automatically runs nam and awk.
+#  If you want to know how to execute nam and awk files individually
+#  refer finish proc{} or /sim1p2p/p2p_code.tcl file comments.
+#-------------------------------------------------------------------------------

@@ -18,8 +18,8 @@ set ns [new Simulator]
 set tf [open p2p_code.tr w]  
 $ns trace-all $tf
 #Setup a Networks Animator File
-set nm [open p2p_code.nam w]
-$ns namtrace-all $tf
+set nf [open p2p_code.nam w]
+$ns namtrace-all $nf
 
 #STEP2 Building Topology
 
@@ -88,9 +88,9 @@ $cbr1 set interval_ 0.001
 
 #Step6
 proc finish { } {
-global ns tf
+global ns tf nf
 $ns flush-trace
-exec nam egl-nam
+exec nam p2p_code.nam
 close $tf
 exit 0
 }
