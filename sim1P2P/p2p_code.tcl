@@ -22,6 +22,7 @@ set nm [open p2p_code.nam w]
 $ns namtrace-all $tf
 
 #STEP2 Building Topology
+
 #A : Create 4 nodes
 set n0 [$ns node]
 set n1 [$ns node]
