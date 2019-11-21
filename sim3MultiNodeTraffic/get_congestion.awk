@@ -3,7 +3,7 @@ BEGIN{
 }
 {
     if($6=="cwdn_")
-        printf("%f \t %f \n",$1,$7);
+        printf("%f \t %f \t\n",$1,$7);
 }
 END{
     puts "done"

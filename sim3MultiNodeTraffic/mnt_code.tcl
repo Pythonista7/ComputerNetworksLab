@@ -110,8 +110,8 @@ $ETH4 trace maxcwnd_ 10
 proc finish { } {
 global ns tf nf
 exec nam mnt_code.nam &
-exec awk -f get_congestion.awk file1.tr > cong1
-exec awk -f get_congestion.awk file2.tr > cong2
+#exec awk -f get_congestion.awk file1.tr > cong1 &
+#exec awk -f get_congestion.awk file2.tr > cong2 &
 $ns flush-trace
 close $tf
 close $nf
