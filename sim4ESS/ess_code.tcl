@@ -29,8 +29,8 @@ $ns namtrace-all-wireless $nf 1000 1000
 
 $ns node-config -adhocRouting DSDV \
                 -llType LL \
+                -ifqType Queue/DropTail \
                 -macType Mac/802_11 \
-                -ifqType Queue/DropTail \ 
                 -ifqLen 50 \
                 -phyType Phy/WirelessPhy \
                 -channelType Channel/WirelessChannel \
@@ -65,12 +65,12 @@ $n2 set Y_ 200
 $n2 set Z_ 0
 
 
-$ns at 0.1 $n0 "$n0 setdest 50 50 15"
-$ns at 0.1 $n0 "$n1 setdest 100 100 25"
-$ns at 0.1 $n0 "$n2 setdest 600 600 25"
+$ns at 0.1  "$n0 setdest 50 50 15"
+$ns at 0.1  "$n1 setdest 100 100 25"
+$ns at 0.1  "$n2 setdest 600 600 25"
 
 set tcp0 [new Agent/TCP]
-$ns attach-agent $tcp0 $n0
+$ns attach-agent $n0 $tcp0 
 set ftp0 [new Application/FTP]
 $ftp0 attach-agent $tcp0
 

@@ -24,8 +24,8 @@ $ns node-config -adhocRouting AODV \
 		-antType Antenna/OmniAntenna \
 		-energyModel EnergyModel \
 		-initialEnergy 100 \
-		  -rxPower 0.3 \
-		  -txPower 0.6 \
+		-rxPower 0.3 \
+		-txPower 0.6 \
 		-topoInstance $topo \
 		-agentTrace ON \
 		-routerTrace ON \
