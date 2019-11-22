@@ -29,13 +29,14 @@ class crc
 		for(int i=k;i<k+g-1;i++)
 			data[i]=0;
 
-		/*Disp after padding
+		/*Disp after padding 
 		System.out.println("Padded Codeword");
 		for(int i=0;i<k+g-1;i++)
 			System.out.println(codeword[i]);
 		*/
+		
 		//Division part
-		//data=codeword bcause data was padded with zeros and stored in codeword
+		//codeword=data because data was padded with zeros and stored in codeword
 		codeword=div(data,gen,k,g);
 		System.out.println("Checksum is :");
 		for(int i=k;i<k+g-1;i++)

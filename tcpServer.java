@@ -37,6 +37,7 @@ class tcpServer
 		//msg is a temporary variable to store and send data to the outstream via printwriter 		
 		String msg;
 		System.out.println("Sending contents of "+fname);
+		
 		//Keep sending data from file to outstream until EOF/Null is encountered
 		while((msg=ContentReader.readLine()) != null)
 		{

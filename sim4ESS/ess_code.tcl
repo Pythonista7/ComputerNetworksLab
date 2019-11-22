@@ -22,7 +22,9 @@ $ns trace-all $tf
 #Setup a Topology and Networks Animator File
 set topo [new Topography]
 $topo load_flatgrid 1000 1000
-set nf [open ess_code.nam w]
+
+set nf [open ess_code.nam w]    
+
 $ns namtrace-all-wireless $nf 1000 1000
 
 #https://www.nsnam.com/2012/09/wireless-node-configuration-in-network.html
@@ -61,6 +63,7 @@ $ns node-config -adhocRouting DSDV \
                 -agentTrace ON \
                 -routeTrace ON \
 
+#You dont need $ns to create god
 # GOD --> General Operations Director
 create-god 3 
 
@@ -82,24 +85,21 @@ $n2 label "sink2"
 # $node set X_ <x1>
 # $node set Y_ <y1>
 # $node set Z_ <z1>$node at 
-# $time setdest<x2> <y2> <speed>
 # Node movement may be logged
 
 $n0 set X_ 50
 $n0 set Y_ 50
 $n0 set Z_ 0
 
-
 $n1 set X_ 100
 $n1 set Y_ 100
 $n1 set Z_ 0
-
 
 $n2 set X_ 200
 $n2 set Y_ 200
 $n2 set Z_ 0
 
-# $time setdest<x2> <y2> <speed> from above comment ^^^^
+# $time setdest<x2> <y2> <speed> 
 $ns at 0.1  "$n0 setdest 50 50 15"
 $ns at 0.1  "$n1 setdest 100 100 25"
 $ns at 0.1  "$n2 setdest 600 600 25"
@@ -112,6 +112,7 @@ $ftp0 attach-agent $tcp0
 
 set sink0 [new Agent/TCPSink]
 $ns attach-agent $n1 $sink0
+
 $ns connect $tcp0 $sink0
 
 set tcp1 [new Agent/TCP]
@@ -121,6 +122,7 @@ $ftp1 attach-agent $tcp1
 
 set sink1 [new Agent/TCPSink]
 $ns attach-agent $n2 $sink1
+
 $ns connect $tcp1 $sink1
 
 #Start sending traffic at 0.5 seconds

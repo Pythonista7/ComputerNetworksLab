@@ -66,7 +66,7 @@ $ns make-lan "$n1 $n2 $n3 $n4" 10Mb 10ms LL Queue/DropTail Mac/802_3
 #Initialize a TCP agent used by a FTP application at node 1.This node generates traffic.
 set ETH1 [ new Agent/TCP ]
 $ns attach-agent $n1 $ETH1
-#Attach node(ETH1) to the Application(FTP1)
+#Attach Agent(ETH1) to the Application(FTP1)
 set ftp1 [ new Application/FTP ]
 $ftp1 attach-agent $ETH1
 
@@ -110,8 +110,9 @@ $ETH4 trace maxcwnd_ 10
 proc finish { } {
 global ns tf nf
 exec nam mnt_code.nam &
-#exec awk -f get_congestion.awk file1.tr > cong1 &
-#exec awk -f get_congestion.awk file2.tr > cong2 &
+exec awk -f get_congestion.awk file1.tr > cong1 &
+exec awk -f get_congestion.awk file2.tr > cong2 &
+#exec xgraph cong1 cong2 &
 $ns flush-trace
 close $tf
 close $nf
@@ -130,5 +131,5 @@ $ns at 1.0 "$ftp4 start"
 $ns at 2.0 "$ftp4 start"
 $ns at 3.0 "$ftp4 start"
 
-$ns at 5.0 "finish"
+$ns at 10.0 "finish"
 $ns run

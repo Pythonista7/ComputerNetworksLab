@@ -7,8 +7,8 @@
 #-------------------------------------------------------------------------------
 #                              AIM
 #-------------------------------------------------------------------------------
-#Implement three nodes point – to – point network with duplex links between them.
-#Set the queue size, vary the bandwidth and find the number of packets dropped.
+# Implement three nodes point – to – point network with duplex links between them.
+# Set the queue size, vary the bandwidth and find the number of packets dropped.
 #-------------------------------------------------------------------------------
 
 #STEP1
@@ -93,6 +93,7 @@ global ns tf nf
 $ns flush-trace
 exec nam p2p_code.nam
 close $tf
+close $nf
 exit 0
 }
 
