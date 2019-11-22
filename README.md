@@ -10,7 +10,7 @@
     `$sudo tar -C /bin/xgraph/ -xvf xgraph_4.38_linux64.tar.gz `
    <br><br> NOTE:  This untared dir has a bin dir which contains the xgraph executable which we need to add to .bashrc 
 4. Navigate to home using directory and open .bashrc file
-5. Create Alias for the command , add the below line into bashrc file
+5. Create Alias for the command , add the below line into bashrc file<br>
 	`alias xgraph='path_to_the_untarred_dir/bin/xgraph' `
 7. Run the below command to reflect changes made to bashrc :<br>
     `$ source ~/.bashrc`
