@@ -10,6 +10,10 @@
 # Implement and study the performance of CDMA on NS2/NS3(Using stack called(Call net)
 # or equivalent environment.
 #-------------------------------------------------------------------------------
+#
+#		NOTE : Refer the previous simulation(sim5GSM) before going through this file. 
+#
+#-------------------------------------------------------------------------------
 
 #Mac layer configs for cdma 
 Mac/802_11 set cdma_code_bw_start_ 0
@@ -140,10 +144,10 @@ $ns connect $udp0 $sink
 #Start sending traffic from udp0
 $ns at 1.00 "$cbr1 start"
 
+#Please refer sim5GSM/gsm_code.tcl for the comments of the below @ https://github.com/Pythonista7/ComputerNetworksLab/blob/master/sim5GSM/gsm_code.tcl
 set holdtime 0
 set holdseq 0
 set holdrate1 0
-
 
 proc record { } {
 global sink f0 f1 f2 holdtime holdseq holdrate1
