@@ -64,7 +64,7 @@ class crc
 		for(int i=k;i<k+g-1;i++)
 		{	if(codewordR[i]!=0)
 			{	flag=1;
-				
+				break;
 			}
 			else
 				flag=0;
